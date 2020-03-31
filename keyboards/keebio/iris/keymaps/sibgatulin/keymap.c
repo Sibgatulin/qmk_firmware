@@ -5,12 +5,39 @@
 #define _LOWER 1
 #define _RAISE 2
 #define _ADJUST 3
+/* #define UNICODE_KEY_LNX  LCTL(LSFT(KC_E)) */
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
   RAISE,
   ADJUST,
+};
+
+enum unicode_names {
+    DE_AE_L,
+    DE_AE_U,
+    DE_OE_L,
+    DE_OE_U,
+    DE_UE_L,
+    DE_UE_U,
+    DE_SS_L,
+    DE_SS_U
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+    [DE_AE_L] = 0x00E4, // ä
+    [DE_AE_U] = 0x00C4, // Ä
+    [DE_OE_L] = 0x00F6, // ö
+    [DE_OE_U] = 0x00D6, // Ö
+    [DE_UE_L] = 0x00FC, // ü
+    [DE_UE_U] = 0x00DC, // Ü
+    [DE_SS_L] = 0x00DF, // ß
+    [DE_SS_U] = 0x1E9E, // ẞ
+};
+
+void matrix_init_user(void) {
+    set_unicode_input_mode(UC_LNX);
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -33,13 +60,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                            KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PSCR,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_CLCK,  _______, _______, _______, KC_WH_U, _______,                           _______, _______, KC_INS,  _______, KC_BSLS, KC_DEL,
+     KC_CLCK,  _______, _______, _______, KC_WH_U, _______,                           _______, XP(4,5), KC_INS,  XP(2,3), KC_BSLS, KC_DEL,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_BTN2, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R,                            KC_LEFT,  KC_DOWN, KC_UP,  KC_RGHT, KC_PGUP, KC_HOME,
+     _______, XP(0,1), KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R,                            KC_LEFT,  KC_DOWN, KC_UP,  KC_RGHT, KC_PGUP, KC_HOME,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_ACL0, KC_ACL1, KC_ACL2, KC_WH_D, _______, _______,          _______, _______, _______, KC_LBRC, KC_RBRC, KC_PGDN, KC_END,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    _______, _______, _______,                   KC_BSPC, KC_BTN1, _______
+                                    _______, _______, _______,                   KC_BSPC, KC_BTN1, KC_BTN2
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -47,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_MUTE, _______, _______, _______, _______,                            _______, KC_7,    KC_8,    KC_9,    _______, _______,
+     _______, KC_MUTE, _______, _______, _______, _______,                            _______, KC_7,    KC_8,    KC_9,    XP(6,7), _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_VOLU, KC_MSTP, _______, _______, _______,                            _______, KC_4,    KC_5,    KC_6,    KC_PLUS, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -128,3 +155,4 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         }
     }
 }
+
