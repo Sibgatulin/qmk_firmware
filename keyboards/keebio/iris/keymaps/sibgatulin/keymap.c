@@ -1,6 +1,6 @@
 #include QMK_KEYBOARD_H
 
-
+#define TAPPING_TERM 150
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
@@ -14,25 +14,33 @@ enum custom_keycodes {
 };
 
 enum unicode_names {
-    DE_AE_L,
-    DE_AE_U,
-    DE_OE_L,
-    DE_OE_U,
-    DE_UE_L,
-    DE_UE_U,
-    DE_SS_L,
-    DE_SS_U
+    AE_L,
+    AE_U,
+    OE_L,
+    OE_U,
+    UE_L,
+    UE_U,
+    SS_L,
+    SS_U,
+    EURO,
+    CIRC,
+    CHIL,
+    MICR,
 };
 
 const uint32_t PROGMEM unicode_map[] = {
-    [DE_AE_L] = 0x00E4, // ä
-    [DE_AE_U] = 0x00C4, // Ä
-    [DE_OE_L] = 0x00F6, // ö
-    [DE_OE_U] = 0x00D6, // Ö
-    [DE_UE_L] = 0x00FC, // ü
-    [DE_UE_U] = 0x00DC, // Ü
-    [DE_SS_L] = 0x00DF, // ß
-    [DE_SS_U] = 0x1E9E, // ẞ
+    [AE_L] = 0x00E4, // ä
+    [AE_U] = 0x00C4, // Ä
+    [OE_L] = 0x00F6, // ö
+    [OE_U] = 0x00D6, // Ö
+    [UE_L] = 0x00FC, // ü
+    [UE_U] = 0x00DC, // Ü
+    [SS_L] = 0x00DF, // ß
+    [SS_U] = 0x1E9E, // ẞ
+    [EURO] = 0x20AC, // €
+    [CIRC] = 0x00B0, // °
+    [CHIL] = 0x03C7, // χ
+    [MICR] = 0x00B5, // µ
 };
 
 void matrix_init_user(void) {
@@ -59,11 +67,11 @@ SFT_T(KC_TAB),KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                            KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PSCR,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_CLCK,  _______, _______, _______, KC_WH_U, _______,                           _______, XP(4,5), KC_INS,  XP(2,3), KC_BSLS, KC_DEL,
+     KC_CLCK,  _______, _______,X(EURO), KC_WH_U, _______,                            _______, XP(4,5), KC_INS,  XP(2,3), KC_BSLS, KC_DEL,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, XP(0,1), KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R,                            KC_LEFT,  KC_DOWN, KC_UP,  KC_RGHT, KC_PGUP, KC_HOME,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_ACL0, KC_ACL1, KC_ACL2, KC_WH_D, _______, _______,          _______, _______, _______, KC_LBRC, KC_RBRC, KC_PGDN, KC_END,
+     _______, _______, X(CHIL), X(CIRC), KC_WH_D, _______, _______,          _______, _______, X(MICR), KC_LBRC, KC_RBRC, KC_PGDN, KC_END,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   KC_BSPC, KC_BTN1, KC_BTN2
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
