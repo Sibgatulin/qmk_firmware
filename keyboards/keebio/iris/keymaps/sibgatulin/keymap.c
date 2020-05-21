@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 
-#define TAPPING_TERM 150
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
