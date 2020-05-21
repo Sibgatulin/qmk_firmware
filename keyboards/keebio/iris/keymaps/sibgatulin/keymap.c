@@ -7,9 +7,12 @@
 #define LSFT_A  SFT_T(KC_A)
 #define RSFT_CN SFT_T(KC_SCLN)
 #define ALT_SFT A(KC_LSFT)
+#define CTL_SPC CTL_T(KC_SPC)
 #define CTL_ESC CTL_T(KC_ESC)
-#define CTL_BSP CTL_T(KC_BSPC)
-#define CTL_DEL CTL_T(KC_DEL)
+#define GUI_BSP LGUI_T(KC_BSPC)
+#define ALT_DEL LALT_T(KC_DEL)
+#define LOW_ENT LT(_LOWER, KC_ENT)
+#define RAI_TAB LT(_RAISE, KC_TAB)
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
@@ -87,13 +90,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_CLCK,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+     _______,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_TAB,   LSFT_A,  KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    RSFT_CN, KC_QUOT,
+     KC_CLCK,  LSFT_A,  KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    RSFT_CN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LCTL,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_ALGR,         ALT_SFT,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
+     KC_ALGR,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_ALGR,         ALT_SFT,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
   //└────────┴────────┴────────┴────────┼────────┼────────┼────────┤        ├────────┼────────┼────────┼────────┴────────┴────────┴────────┘
-                                          RAISE,   LOWER,   KC_SPC,          CTL_ESC, KC_LGUI, KC_LALT
+                                         RAI_TAB, LOW_ENT,  CTL_SPC,         CTL_ESC, GUI_BSP, ALT_DEL
                                 //      └────────┴────────┴────────┘        └────────┴────────┴────────┘
   ),
 
@@ -107,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, KC_VOLD, _______, KC_WH_D, _______, RESET,            _______, _______,  KC_APP, KC_LBRC, KC_RBRC, KC_PGDN, KC_END,
   //└────────┴────────┴────────┴────────┼────────┼────────┼────────┤        ├────────┼────────┼────────┼────────┴────────┴────────┴────────┘
-                                          _______, _______, _______,         CTL_BSP, KC_BTN1, KC_BTN2
+                                          _______, _______, _______,         KC_LCTL, KC_BTN1, KC_BTN2
                                 //      └────────┴────────┴────────┘        └────────┴────────┴────────┘
   ),
 
@@ -121,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______,  KC_F1,   KC_F2,   KC_F3,   KC_F10,  _______,          _______, _______, KC_1,    KC_2,    KC_3,    KC_MINS, KC_EQL,
   //└────────┴────────┴────────┴────────┼────────┼────────┼────────┤        ├────────┼────────┼────────┼────────┴────────┴────────┴────────┘
-                                         _______, _______, _______,          CTL_DEL, KC_PDOT, KC_0
+                                         _______, _______, _______,          KC_LCTL, KC_PDOT, KC_0
                                 //      └────────┴────────┴────────┘        └────────┴────────┴────────┘
   ),
 
