@@ -33,3 +33,4 @@
 
 // Supposed to help managing shift as mod on a
 #define IGNORE_MOD_TAP_INTERRUPT
+#define MK_3_SPEED
