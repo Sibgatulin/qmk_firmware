@@ -30,7 +30,11 @@
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 #define SPLIT_USB_DETECT
 #define NO_USB_STARTUP_CHECK
+#define ENCODER_RESOLUTION 2
 
 // Supposed to help managing shift as mod on a
 #define IGNORE_MOD_TAP_INTERRUPT
 #define MK_3_SPEED
+#define MK_MOMENTARY_ACCEL
+#define MK_C_OFFSET_UNMOD 8
+#define MK_C_OFFSET_2 16
