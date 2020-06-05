@@ -18,7 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 // #define USE_I2C
-/* #define EE_HANDS */
+#define EE_HANDS
 
+// Supposed to help managing shift as mod on a
 #define IGNORE_MOD_TAP_INTERRUPT
-#define PERMISSIVE_HOLD
+#define MK_3_SPEED
+#define MK_MOMENTARY_ACCEL
+#define MK_C_OFFSET_UNMOD 8
+#define MK_C_OFFSET_2 16
